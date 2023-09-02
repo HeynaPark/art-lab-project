@@ -48,9 +48,9 @@ def interpolate_video(input1, input2, output_path, duration_time):
 if __name__ == "__main__":
 
     ### raw_img, difussion_img, output_video_path명을 경로에 맞게 수정해서 사용하시면 됩니다!
-    name_str = 'scream'
+    name_str = 'wawa'
     raw_img = "data/" + name_str + ".png"
     difussion_img = "data/" + name_str + "-d.png"
-    output_video_path = "output/" + name_str + "_rev.mp4"
+    output_video_path = "output/" + name_str + ".mp4"
     duration_sec = 4
-    interpolate_video(raw_img, difussion_img ,output_video_path, duration_sec)
+    interpolate_video(difussion_img , raw_img, output_video_path, duration_sec)
