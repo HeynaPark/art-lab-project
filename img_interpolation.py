@@ -1,7 +1,13 @@
 import cv2
+import os
 
+file_name1 = ''
+file_name2 = ''
+time1 = 1
+time2 = 4
+time3 = 1
 
-def interpolate_video(input1, input2, output_path, duration_time):
+def interpolate_video(input1, input2, output_path, first_time, duration_time, last_time):
     img1 = cv2.imread(input1)
     img2 = cv2.imread(input2)
     
@@ -21,13 +27,13 @@ def interpolate_video(input1, input2, output_path, duration_time):
     height, width, channels = img1.shape
 
     # 출력 비디오 설정
-    fourcc = cv2.VideoWriter_fourcc(*'XVID')
+    fourcc = cv2.VideoWriter_fourcc('m', 'p', '4', 'v')
     fps = 30
     out = cv2.VideoWriter(output_path, fourcc, fps, (width, height))
 
     img_duration = fps
 
-    for i in range(img_duration):
+    for i in range(img_duration*time1):
         out.write(img1)
 
     # 보간 이미지 생성 및 비디오 작성
@@ -37,13 +43,39 @@ def interpolate_video(input1, input2, output_path, duration_time):
         interpolated_frame = cv2.addWeighted(img1, 1 - alpha, img2, alpha, 0)
         out.write(interpolated_frame)
 
-    for i in range(img_duration):
+    for i in range(img_duration*time3):
         out.write(img2)
 
     out.release()
     cv2.destroyAllWindows()
 
     print('process done.')
+
+def save_file_path1(name):
+    global file_name1
+    file_name1 = name
+    print("input1 : ", file_name1)
+
+def save_file_path2(name):
+    global file_name2
+    file_name2 = name
+    print("input2 : ", file_name2)
+
+def save_time_val(t1,t2,t3):
+    global time1, time2, time3
+    time1 = int(t1)
+    time2 = int(t2)
+    time3 = int(t3)
+    print(f"time settings : first frame {time1}   interpolation {time2}    last frame {time3}")
+
+def start_generate_video():
+    current_directory = os.path.dirname(os.path.abspath(__file__))
+    file_name_without_extension = os.path.splitext(os.path.basename(file_name2))[0]
+    new_file_path = file_name_without_extension + str(time1) + str(time2) + str(time3) +'.mp4'
+    output_str = os.path.join(current_directory, new_file_path)
+    print('output file : ', output_str)
+
+    interpolate_video(file_name1, file_name2, output_str, time1, time2, time3)
 
 if __name__ == "__main__":
 
@@ -53,4 +85,4 @@ if __name__ == "__main__":
     difussion_img = "data/" + name_str + "-d.png"
     output_video_path = "output/" + name_str + ".mp4"
     duration_sec = 4
-    interpolate_video(difussion_img , raw_img, output_video_path, duration_sec)
+    # interpolate_video(difussion_img , raw_img, output_video_path, duration_sec)
