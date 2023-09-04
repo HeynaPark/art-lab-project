@@ -1,5 +1,6 @@
 import cv2
 import os
+import sys
 
 file_name1 = ''
 file_name2 = ''
@@ -69,7 +70,7 @@ def save_time_val(t1,t2,t3):
     print(f"time settings : first frame {time1}   interpolation {time2}    last frame {time3}")
 
 def start_generate_video():
-    current_directory = os.path.dirname(os.path.abspath(__file__))
+    current_directory = os.path.dirname(os.path.abspath(sys.argv[0]))
     file_name_without_extension = os.path.splitext(os.path.basename(file_name2))[0]
     new_file_path = file_name_without_extension + str(time1) + str(time2) + str(time3) +'.mp4'
     output_str = os.path.join(current_directory, new_file_path)
