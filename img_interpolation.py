@@ -4,9 +4,9 @@ import sys
 
 file_name1 = ''
 file_name2 = ''
-time1 = 1
-time2 = 4
-time3 = 1
+time1 = 2
+time2 = 3
+time3 = 2
 
 def interpolate_video(input1, input2, output_path, first_time, duration_time, last_time):
     img1 = cv2.imread(input1)
@@ -69,11 +69,22 @@ def save_time_val(t1,t2,t3):
     time3 = int(t3)
     print(f"time settings : first frame {time1}   interpolation {time2}    last frame {time3}")
 
+def get_available_file_name(base_path, extension):
+    new_path = base_path
+    counter = 1
+    while os.path.exists(new_path):
+        new_path = f"{os.path.splitext(base_path)[0]} ({counter}){extension}"
+        counter += 1
+    return new_path
+
 def start_generate_video():
     current_directory = os.path.dirname(os.path.abspath(sys.argv[0]))
     file_name_without_extension = os.path.splitext(os.path.basename(file_name2))[0]
     new_file_path = file_name_without_extension + str(time1) + str(time2) + str(time3) +'.mp4'
     output_str = os.path.join(current_directory, new_file_path)
+    # Check if the file already exists
+    if os.path.exists(output_str):
+        output_str = get_available_file_name(output_str, '.mp4')
     print('output file : ', output_str)
 
     interpolate_video(file_name1, file_name2, output_str, time1, time2, time3)

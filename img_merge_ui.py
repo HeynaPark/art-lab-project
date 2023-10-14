@@ -54,19 +54,19 @@ class MyWindow(QMainWindow):
 
         vertical_time1 = QVBoxLayout()
         label_time1 = QLabel("첫 프레임 지속 시간")
-        self.line_edit1 = QLineEdit("1")
+        self.line_edit1 = QLineEdit("2")
         vertical_time1.addWidget(label_time1)
         vertical_time1.addWidget(self.line_edit1)
 
         vertical_time2 = QVBoxLayout()
         label_time2 = QLabel("interpolation 시간")
-        self.line_edit2 = QLineEdit("4")
+        self.line_edit2 = QLineEdit("3")
         vertical_time2.addWidget(label_time2)
         vertical_time2.addWidget(self.line_edit2)
 
         vertical_time3 = QVBoxLayout()
         label_time3 = QLabel("마지막 프레임 지속 시간")
-        self.line_edit3 = QLineEdit("1")
+        self.line_edit3 = QLineEdit("2")
         vertical_time3.addWidget(label_time3)
         vertical_time3.addWidget(self.line_edit3)
 
