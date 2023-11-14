@@ -8,7 +8,7 @@ time1 = 2
 time2 = 3
 time3 = 2
 
-def interpolate_video(input1, input2, output_path, first_time, duration_time, last_time):
+def interpolate_video(input1, input2, output_path, first_time, duration_time, last_time, mode):
     img1 = cv2.imread(input1)
     img2 = cv2.imread(input2)
     
@@ -46,6 +46,16 @@ def interpolate_video(input1, input2, output_path, first_time, duration_time, la
 
     for i in range(img_duration*time3):
         out.write(img2)
+
+    if mode =='aba':
+        for i in range(num_frames):
+            alpha = i / num_frames
+            interpolated_frame = cv2.addWeighted(img2, 1 - alpha, img1, alpha, 0)
+            out.write(interpolated_frame)
+
+        for i in range(img_duration*time1):
+            out.write(img1)
+        
 
     out.release()
     cv2.destroyAllWindows()
@@ -87,7 +97,20 @@ def start_generate_video():
         output_str = get_available_file_name(output_str, '.mp4')
     print('output file : ', output_str)
 
-    interpolate_video(file_name1, file_name2, output_str, time1, time2, time3)
+    interpolate_video(file_name1, file_name2, output_str, time1, time2, time3, 'none')
+
+def start_generate_video_aba():
+    current_directory = os.path.dirname(os.path.abspath(sys.argv[0]))
+    file_name_without_extension = os.path.splitext(os.path.basename(file_name2))[0]
+    new_file_path = file_name_without_extension + str(time1) + str(time2) + str(time3) +'_aba.mp4'
+    output_str = os.path.join(current_directory, new_file_path)
+    # Check if the file already exists
+    if os.path.exists(output_str):
+        output_str = get_available_file_name(output_str, '_aba.mp4')
+    print('output file : ', output_str)
+
+    interpolate_video(file_name1, file_name2, output_str, time1, time2, time3, 'aba')
+
 
 if __name__ == "__main__":
 

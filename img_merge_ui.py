@@ -21,7 +21,7 @@ class MyWindow(QMainWindow):
 
         # 버티컬 박스 레이아웃 1 이미지 1
         vertical_layout1 = QVBoxLayout()
-        button1 = QPushButton("첫번째 이미지 입력(착시 이미지)")
+        button1 = QPushButton("Import Image A")
         label1 = QLabel("")
         image_label1 = QLabel("")
         image_label1.setFixedSize(480,270)
@@ -31,7 +31,7 @@ class MyWindow(QMainWindow):
 
         # 버티컬 박스 레이아웃 2 이미지 2
         vertical_layout2 = QVBoxLayout()
-        button2 = QPushButton("두번째 이미지 입력(원본 이미지)")
+        button2 = QPushButton("Import Image B")
         label2 = QLabel("")
         image_label2 = QLabel("")
         image_label2.setFixedSize(480,270)
@@ -77,11 +77,17 @@ class MyWindow(QMainWindow):
 
 
         # 버튼 3
-        button3 = QPushButton("Generate")
+        generate_layout = QHBoxLayout()
+        button3 = QPushButton("Generate  - A B ")
+        button3_2 = QPushButton("Generate - A B A")
+        generate_layout.addWidget(button3)
+        generate_layout.addWidget(button3_2)
 
         # 수평 박스 레이아웃 2에 버튼 3 추가
+
         horizontal_layout2 = QHBoxLayout()
-        horizontal_layout2.addWidget(button3)
+        horizontal_layout2.addLayout(generate_layout)
+        # horizontal_layout2.addWidget(button3)
 
         # 전체 레이아웃 구성
         main_layout = QVBoxLayout()
@@ -93,6 +99,7 @@ class MyWindow(QMainWindow):
         central_widget.setLayout(main_layout)
 
         button3.clicked.connect(self.generateVideo)
+        button3_2.clicked.connect(self.generateVideo_aba)
         
         
 
@@ -128,6 +135,11 @@ class MyWindow(QMainWindow):
         save_time_val(self.line_edit1.text(), self.line_edit2.text(), self.line_edit3.text())
         start_generate_video()
 
+    def generateVideo_aba(self):
+        save_file_path1(self.file1)
+        save_file_path2(self.file2)
+        save_time_val(self.line_edit1.text(), self.line_edit2.text(), self.line_edit3.text())
+        start_generate_video_aba()
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
