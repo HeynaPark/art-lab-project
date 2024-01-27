@@ -12,7 +12,7 @@ Stable Diffusion을 이용한 착시 이미지 작품 제작.
 
 ## 작품예시
 
-https://github.com/HeynaPark/art-lab-project/assets/90448406/8c65ccb8-647b-4188-8a06-61d2b61527dc
+![fish](https://github.com/HeynaPark/art-lab-project/assets/90448406/a92b9aee-e422-45cb-b0cd-aaf536a7fc6a)
 
 
 ---
