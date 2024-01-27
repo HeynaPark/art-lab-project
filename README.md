@@ -15,6 +15,8 @@ Stable Diffusion을 이용한 착시 이미지 작품 제작.
 ![fish](https://github.com/HeynaPark/art-lab-project/assets/90448406/a92b9aee-e422-45cb-b0cd-aaf536a7fc6a)
 
 
+https://youtu.be/bcj2wDyrhfM
+
 ---
 ## 기능
 
@@ -23,8 +25,7 @@ img_interpolation.py 로 두 장의 이미지를 블랜딩하여 하나의 비�
 ![image](https://github.com/HeynaPark/art-lab-project/assets/90448406/750bf24d-f4f4-4143-b1a5-fefdca875ea9)
 
 
-***
 
-> example
 
-https://youtu.be/bcj2wDyrhfM
+
+
